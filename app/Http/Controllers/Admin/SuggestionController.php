@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\GalleryCategories;
+use App\Models\Suggestion;
 use Illuminate\Http\Request;
 
-class GalleryCategoriesController extends Controller
+class SuggestionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class GalleryCategoriesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(GalleryCategories $galleryCategories)
+    public function show(Suggestion $suggestion)
     {
         //
     }
@@ -43,7 +43,7 @@ class GalleryCategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(GalleryCategories $galleryCategories)
+    public function edit(Suggestion $suggestion)
     {
         //
     }
@@ -51,7 +51,7 @@ class GalleryCategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, GalleryCategories $galleryCategories)
+    public function update(Request $request, Suggestion $suggestion)
     {
         //
     }
@@ -59,7 +59,7 @@ class GalleryCategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(GalleryCategories $galleryCategories)
+    public function destroy(Suggestion $suggestion)
     {
         //
     }

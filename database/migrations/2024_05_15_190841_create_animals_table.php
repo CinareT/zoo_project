@@ -22,10 +22,10 @@ return new class extends Migration
             $table->string('nutrition')->nullable();
             $table->unsignedBigInteger('continent_id');
             $table->unsignedBigInteger('category_id');
+
             $table->string('life_span')->nullable();
             $table->string('growth_count')->nullable();
             $table->string('map_url');
-
             $table->timestamps();
         });
     }

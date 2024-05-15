@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Countries;
+use App\Models\AnimalIcon;
 use Illuminate\Http\Request;
 
-class CountriesController extends Controller
+class AnimalIconController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class CountriesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Countries $countries)
+    public function show(AnimalIcon $animalIcon)
     {
         //
     }
@@ -43,7 +43,7 @@ class CountriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Countries $countries)
+    public function edit(AnimalIcon $animalIcon)
     {
         //
     }
@@ -51,7 +51,7 @@ class CountriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Countries $countries)
+    public function update(Request $request, AnimalIcon $animalIcon)
     {
         //
     }
@@ -59,7 +59,7 @@ class CountriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Countries $countries)
+    public function destroy(AnimalIcon $animalIcon)
     {
         //
     }

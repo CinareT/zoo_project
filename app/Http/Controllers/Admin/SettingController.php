@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Animals;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
-class AnimalsController extends Controller
+class SettingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class AnimalsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Animals $animals)
+    public function show(Setting $setting)
     {
         //
     }
@@ -43,7 +43,7 @@ class AnimalsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Animals $animals)
+    public function edit(Setting $setting)
     {
         //
     }
@@ -51,7 +51,7 @@ class AnimalsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Animals $animals)
+    public function update(Request $request, Setting $setting)
     {
         //
     }
@@ -59,7 +59,7 @@ class AnimalsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Animals $animals)
+    public function destroy(Setting $setting)
     {
         //
     }

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\FaqButtons;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
-class FaqButtonsController extends Controller
+class CountryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class FaqButtonsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(FaqButtons $faqButtons)
+    public function show(Country $country)
     {
         //
     }
@@ -43,7 +43,7 @@ class FaqButtonsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(FaqButtons $faqButtons)
+    public function edit(Country $country)
     {
         //
     }
@@ -51,7 +51,7 @@ class FaqButtonsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, FaqButtons $faqButtons)
+    public function update(Request $request, Country $country)
     {
         //
     }
@@ -59,7 +59,7 @@ class FaqButtonsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(FaqButtons $faqButtons)
+    public function destroy(Country $country)
     {
         //
     }

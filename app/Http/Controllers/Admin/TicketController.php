@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Settings;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 
-class SettingsController extends Controller
+class TicketController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class SettingsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Settings $settings)
+    public function show(Ticket $ticket)
     {
         //
     }
@@ -43,7 +43,7 @@ class SettingsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Settings $settings)
+    public function edit(Ticket $ticket)
     {
         //
     }
@@ -51,7 +51,7 @@ class SettingsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Settings $settings)
+    public function update(Request $request, Ticket $ticket)
     {
         //
     }
@@ -59,7 +59,7 @@ class SettingsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Settings $settings)
+    public function destroy(Ticket $ticket)
     {
         //
     }

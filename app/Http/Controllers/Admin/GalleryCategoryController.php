@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Tickets;
+use App\Models\GalleryCategory;
 use Illuminate\Http\Request;
 
-class TicketsController extends Controller
+class GalleryCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class TicketsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tickets $tickets)
+    public function show(GalleryCategory $galleryCategory)
     {
         //
     }
@@ -43,7 +43,7 @@ class TicketsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tickets $tickets)
+    public function edit(GalleryCategory $galleryCategory)
     {
         //
     }
@@ -51,7 +51,7 @@ class TicketsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tickets $tickets)
+    public function update(Request $request, GalleryCategory $galleryCategory)
     {
         //
     }
@@ -59,7 +59,7 @@ class TicketsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tickets $tickets)
+    public function destroy(GalleryCategory $galleryCategory)
     {
         //
     }

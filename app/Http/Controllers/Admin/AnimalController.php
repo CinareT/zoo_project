@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Suggestions;
+use App\Models\Animal;
 use Illuminate\Http\Request;
 
-class SuggestionsController extends Controller
+class AnimalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class SuggestionsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Suggestions $suggestions)
+    public function show(Animal $animal)
     {
         //
     }
@@ -43,7 +43,7 @@ class SuggestionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Suggestions $suggestions)
+    public function edit(Animal $animal)
     {
         //
     }
@@ -51,7 +51,7 @@ class SuggestionsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Suggestions $suggestions)
+    public function update(Request $request, Animal $animal)
     {
         //
     }
@@ -59,7 +59,7 @@ class SuggestionsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Suggestions $suggestions)
+    public function destroy(Animal $animal)
     {
         //
     }
