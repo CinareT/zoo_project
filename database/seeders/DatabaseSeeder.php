@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         
-        if (!User::where('is_admin', true)->first()->is_admin) {
+        if (!User::where('is_admin', true)->first()?->is_admin) {
             User::factory()->create([
                 'name' => 'Admin Super',
                 'email' => 'admin@email.com',
