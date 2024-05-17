@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Lang;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -27,6 +28,16 @@ class DatabaseSeeder extends Seeder
                 'email' => 'admin@email.com',
                 'password' => 'password',
                 'is_admin' => true,
+            ]);
+        }
+        if (empty(Lang::exists())) {
+            Lang::factory()->create([
+                'country' => 'USA',
+                'code' => 'en',
+            ]);
+            Lang::factory()->create([
+                'country' => 'Azərbaycan',
+                'code' => 'az',
             ]);
         }
     }
