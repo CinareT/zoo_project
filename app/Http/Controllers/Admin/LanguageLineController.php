@@ -48,7 +48,12 @@ class LanguageLineController extends Controller
      */
     public function show(LanguageLine $languageLine)
     {
-        //
+        if (!empty($languageLine)) {
+            $data = $languageLine;
+            return view('admin.language_line.show', compact('data'));
+        } else {
+            abort(404);
+        }
     }
 
     /**

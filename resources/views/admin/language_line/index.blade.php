@@ -34,85 +34,64 @@ $(function() {
 @endpush
 
 @section('content')
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2 justify-content-between">
-            <div class="col-sm-4">
-                <h1>
-                    Language Line Index
-                </h1>
-            </div>
-            @if (session('message'))
-            <div class="alert alert-{{session('type')}} alert-dismissible col-sm-4">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h5><i class="icon fas fa-check"></i> Alert!</h5>
-                {!!session('message')!!}
-            </div>
-            @endif
-            <div class="col-sm-4">
-                <div class="text-right">
-                    <a href="{{route('admin.language_line.create')}}" class="btn btn-success">New Language Line</a>
-                </div>
-            </div>
-        </div>
-    </div><!-- /.container-fluid -->
-</section>
-<div class="content">
-    <div class="card">
-        <!-- /.card-header -->
-        <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th style="width: 10px">Id</th>
-                        <th>Group</th>
-                        <th>Key</th>
-                        <th>Text</th>
-                        <th class="w-auto">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data as $model)
-                    <tr>
-                        <td>{{$model->id}}</td>
-                        <td>{{$model->group}}</td>
-                        <td>{{$model->key}}</td>
-                        <td>
-                            <div class="texts">
-                                @foreach ($model->text as $lang => $text)
-                                <p><strong>{{$lang}}: </strong>{{Str::limit($text,50)}}</p>
-                                @endforeach
-                            </div>
-                        </td>
-                        <td class="text-right">
-                            <a href="{{route('admin.language_line.show', $model->id)}}" class="btn btn-info mb-1"><i
-                                    class="icon fas fa-info mr-2"></i> Info</a>
-                            <a href="{{route('admin.language_line.edit',$model->id)}}" class="btn btn-warning mb-1"><i
-                                    class="icon fas fa-edit mr-2"></i>
-                                Edit</a>
-                            <form onsubmit="return confirm('Are you sure?')" method="post"
-                                action="{{route('admin.language_line.destroy', $model->id)}}" class="d-inline-block">
-                                @method('delete')
-                                @csrf
-                                <button type="submit" style="width: fit-content;" class="btn btn-outline-danger mb-1">
-                                    <i class="icon fas fa-trash mr-2"></i> Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th style="width: 10px">Id</th>
-                        <th>Group</th>
-                        <th>Key</th>
-                        <th>Text</th>
-                        <th class="w-auto">Actions</th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-        <!-- /.card-body -->
+
+<div class="text-right mb-3">
+    <a href="http://127.0.0.1:8001/control/language_line/create" class="btn btn-success">New Language Line</a>
+</div>
+<div class="card">
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 10px">Id</th>
+                    <th>Group</th>
+                    <th>Key</th>
+                    <th>Text</th>
+                    <th class="w-auto">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($data as $model)
+                <tr>
+                    <td>{{$model->id}}</td>
+                    <td>{{$model->group}}</td>
+                    <td>{{$model->key}}</td>
+                    <td>
+                        <div class="texts">
+                            @foreach ($model->text as $lang => $text)
+                            <p><strong>{{$lang}}: </strong>{{Str::limit($text,50)}}</p>
+                            @endforeach
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <a href="{{route('admin.language_line.show', $model->id)}}" class="btn btn-info mb-1"><i
+                                class="icon fas fa-info mr-2"></i> Info</a>
+                        <a href="{{route('admin.language_line.edit',$model->id)}}" class="btn btn-warning mb-1"><i
+                                class="icon fas fa-edit mr-2"></i>
+                            Edit</a>
+                        <form onsubmit="return confirm('Are you sure?')" method="post"
+                            action="{{route('admin.language_line.destroy', $model->id)}}" class="d-inline-block">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" style="width: fit-content;" class="btn btn-outline-danger mb-1">
+                                <i class="icon fas fa-trash mr-2"></i> Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th style="width: 10px">Id</th>
+                    <th>Group</th>
+                    <th>Key</th>
+                    <th>Text</th>
+                    <th class="w-auto">Actions</th>
+                </tr>
+            </tfoot>
+        </table>
     </div>
+    <!-- /.card-body -->
 </div>
 @endsection
