@@ -140,7 +140,7 @@
                     <i class="fas fa-sign-out-alt"></i>
                 </button>
             </form> -->
-              <a href="{{ route('logout') }}" class="nav-link">
+              <a href="{{ route('admin.logout') }}" class="nav-link">
                   <i class="fas fa-sign-out-alt"></i>
               </a>
           </li>

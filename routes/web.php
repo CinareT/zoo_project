@@ -9,11 +9,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::group(['middleware' => 'auth', 'prefix' => '/control'], function () {
-    Route::get('', [DashboardController::class, 'index'])->name('admin.index');
+Route::group(['middleware' => 'auth', 'prefix' => '/control', 'as' => 'admin.'], function () {
+    Route::get('', [DashboardController::class, 'index'])->name('index');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::resource('language_line', LanguageLineController::class);
-
 });
 
 

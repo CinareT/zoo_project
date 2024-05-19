@@ -4,6 +4,11 @@
 <head>
     @include('admin.layouts.includes.head')
     @stack('css')
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{asset('admin/assets/dist/css/adminlte.min.css')}}">
+    <!-- custom -->
+    <link rel="stylesheet" href="{{asset('admin/assets/custom.css')}}">
     <title>@stack('title',"Admin Control Zoo Park")</title>
 </head>
 
@@ -29,6 +34,12 @@
     <!-- ./wrapper -->
     @include('admin.layouts.includes.foot')
     @stack('js')
+    <!-- AdminLTE App -->
+    <script src="{{ asset('admin/assets/dist/js/adminlte.js') }}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ asset('admin/assets/dist/js/demo.js') }}"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="{{ asset('admin/assets/dist/js/pages/dashboard.js') }}"></script>
 </body>
 
 </html>
