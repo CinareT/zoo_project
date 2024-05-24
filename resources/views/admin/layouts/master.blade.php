@@ -1,14 +1,7 @@
 @php
-function formatRouteName($routeName) {
-$prefix = 'admin.';
-if (Str::startsWith($routeName, $prefix)) {
-$routeName = Str::after($routeName, $prefix);
-}
-if ($routeName == 'index') $routeName = 'dashboard';
-$readableName = Str::title(str_replace(['.', '_'], ' ', $routeName));
-
-return $readableName;
-}
+$route = request()->route()->getName();
+$breadcrumb = explode('.',$route);
+$title = ucwords(str_replace(['admin.','.', '_'], ' ', $route));
 @endphp
 
 <!DOCTYPE html>
@@ -36,9 +29,18 @@ return $readableName;
                     <div class="row justify-content-between">
                         <div class="col-sm-4">
                             <h1>
-                                {{formatRouteName(request()->route()->getName())}}
+                                {{$title}}
                             </h1>
                         </div>
+                        @if (count($breadcrumb)>2 && $breadcrumb[2] != 'index')
+                        <div class="col-sm-2">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="{{route('admin.'.$breadcrumb[1].'.index')}}">{{Str::title(str_replace('_',' ',$breadcrumb[1]))}}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{{ucfirst($breadcrumb[2])}}</li>
+                            </ol>
+                        </div>
+                        @endif
                         @if (session('message'))
                         <div class="col-sm-5 text-right">
                             <div class="alert alert-{{session('type')}} alert-dismissible mb-0 ml-auto w-fit-content">

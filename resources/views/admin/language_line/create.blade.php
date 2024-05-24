@@ -9,7 +9,7 @@
                 <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
                     @foreach ($langs as $key => $lang)
                     <li class="nav-item">
-                        <a class="nav-link {{ $key === 0 ? 'active' : '' }}" id="custom-tabs-four-home-tab" data-toggle="pill" href="#{{ 'language_line' . $lang->code }}" role="tab" aria-controls="custom-tabs-four-home" aria-selected="{{ $key === 0 ? 'true' : 'false' }}">{{'Language Line ['. strtoupper($lang->code) .']'}}</a>
+                        <a class="nav-link {{ $key === 0 ? 'active' : '' }} @error('text.' . $lang->code) text-danger border-top-danger @enderror" id="custom-tabs-four-home-tab" data-toggle="pill" href="#{{ 'language_line' . $lang->code }}" role="tab" aria-controls="custom-tabs-four-home" aria-selected="{{ $key === 0 ? 'true' : 'false' }}">{{'Language Line ['. strtoupper($lang->code) .']'}}</a>
                     </li>
                     @endforeach
                 </ul>
@@ -40,14 +40,14 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="group">Group</label>
-                    <input type="text" name="group" class="form-control @error('group') is-invalid @enderror" id="group">
+                    <input type="text" name="group" class="form-control @error('group') is-invalid @enderror" id="group" value="{{old('group')}}">
                     @error('group')
                     <span class="error invalid-feedback">{{$message}}</span>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="group">Key</label>
-                    <input type="text" name="key" class="form-control @error('key') is-invalid @enderror" id="key">
+                    <label for="key">Key</label>
+                    <input type="text" name="key" class="form-control @error('key') is-invalid @enderror" id="key" value="{{old('key')}}">
                     @error('key')
                     <span class="error invalid-feedback">{{$message}}</span>
                     @enderror
@@ -55,7 +55,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer text-right">
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Add</button>
             </div>
         </div>
     </div>
