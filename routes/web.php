@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LangController;
 use App\Http\Controllers\Admin\LanguageLineController;
@@ -15,6 +16,7 @@ Route::group(['middleware' => 'auth', 'prefix' => LaravelLocalization::setLocale
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::resource('language_line', LanguageLineController::class);
     Route::resource('langs', LangController::class);
+    Route::resource('categories', CategoryController::class);
 });
 
 

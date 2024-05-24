@@ -9,6 +9,10 @@
 
 <body>
     <h1>Home Page</h1>
+    <ul>
+        <li><a href="#">{{ __('menu.home') }}</a></li>
+        <li><a href="#">{{ __('menu.about') }}</a></li>
+    </ul>
 </body>
 
 </html>

@@ -82,7 +82,7 @@ class LanguageLineController extends Controller
                 return back()
                     ->with('type', 'danger')
                     ->with('message', 'Failed to update language line!')
-                    ->withInput($data)->with(compact('model', 'lang'));
+                    ->withInput($data)->with(compact('model', 'langs'));
             }
         } else {
             abort(404);
