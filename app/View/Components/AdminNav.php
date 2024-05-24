@@ -2,9 +2,11 @@
 
 namespace App\View\Components;
 
+use App\Models\Lang;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class AdminNav extends Component
 {
@@ -21,6 +23,9 @@ class AdminNav extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin-nav');
+        $langs = Lang::all();
+        $currentLang = Lang::where('code', LaravelLocalization::getCurrentLocale())->first();
+
+        return view('components.admin-nav', compact('langs', 'currentLang'));
     }
 }

@@ -11,6 +11,7 @@
 .w-fit-content {
     width: fit-content !important;
 }
+
 .image-box img {
     max-height: 80vh;
 }
@@ -28,4 +29,31 @@
 
 .active.border-top-danger {
     border-top-color: #dc3545 !important;
+}
+
+.language-switch {
+    width: 100px;
+    list-style: none;
+}
+
+.language-switch a {
+    display: block;
+}
+
+.language-switch img {
+    max-width: 100%;
+    width: 50%;
+}
+
+.language-switch .dropdown-menu {
+    min-width: 0;
+}
+
+.language-switch .dropdown-menu a {
+    height: 100%;
+}
+
+.language-switch .dropdown-menu img {
+    height: 40px;
+    object-fit: contain;
 }
