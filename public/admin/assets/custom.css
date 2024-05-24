@@ -11,3 +11,21 @@
 .w-fit-content {
     width: fit-content !important;
 }
+.image-box img {
+    max-height: 80vh;
+}
+
+.table .image img {
+    width: 150px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+.active.border-top-danger {
+    border-top-color: #dc3545 !important;
+}

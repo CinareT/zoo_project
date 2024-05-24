@@ -33,8 +33,6 @@
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
                             <a href="{{ route('admin.index') }}" class="nav-link @if (Route::is('admin.index'))active @endif">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -42,11 +40,9 @@
                                     Dashboard
                                 </p>
                             </a>
-
                         </li>
-
-                        <li class="nav-item @if (Route::is('admin.language_line.*'))menu-is-opening menu-open @endif">
-                            <a href="#" class="nav-link @if (Route::is('admin.language_line.*'))active @endif">
+                        <li class="nav-item @if (Route::is('*.language_line.*','*.langs.*'))menu-is-opening menu-open @endif">
+                            <a href="#" class="nav-link @if (Route::is('*.language_line.*','*.langs.*'))active @endif">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     Tables
@@ -55,15 +51,15 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{route('admin.language_line.index')}}" class="nav-link @if (Route::is('admin.language_line.*'))active @endif">
+                                    <a href="{{route('admin.langs.index')}}" class="nav-link @if (Route::is('admin.langs.*'))active @endif">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Language Line</p>
+                                        <p>Languages</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/tables/data.html" class="nav-link">
+                                    <a href="{{route('admin.language_line.index')}}" class="nav-link @if (Route::is('admin.language_line.*'))active @endif">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>DataTables</p>
+                                        <p>Language Line</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -74,14 +70,6 @@
                                 </li>
                             </ul>
                         </li>
-
-
-
-
-
-
-
-
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

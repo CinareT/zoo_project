@@ -36,7 +36,7 @@ $(function() {
 @section('content')
 
 <div class="text-right mb-3">
-    <a href="{{route('admin.language_line.create')}}" class="btn btn-success">New Language Line</a>
+    <a href="{{route('admin.langs.create')}}" class="btn btn-success">New Language</a>
 </div>
 <div class="card">
     <!-- /.card-header -->
@@ -45,9 +45,9 @@ $(function() {
             <thead>
                 <tr>
                     <th style="width: 10px">Id</th>
-                    <th>Group</th>
-                    <th>Key</th>
-                    <th>Text</th>
+                    <th>Code</th>
+                    <th>Country</th>
+                    <th>Image</th>
                     <th class="w-auto">Actions</th>
                 </tr>
             </thead>
@@ -55,23 +55,23 @@ $(function() {
                 @foreach ($models as $model)
                 <tr>
                     <td>{{$model->id}}</td>
-                    <td>{{$model->group}}</td>
-                    <td>{{$model->key}}</td>
+                    <td>{{$model->code}}</td>
+                    <td>{{$model->country}}</td>
                     <td>
-                        <div class="texts">
-                            @foreach ($model->text as $lang => $text)
-                            <p><strong>{{$lang}}: </strong>{{Str::limit($text,50)}}</p>
-                            @endforeach
+                        @if ($model->image)
+                        <div class="image">
+                            <img src="{{$model->image}}" alt="{{$model->country.' flag'}}">
                         </div>
+                        @endif
                     </td>
                     <td class="text-right">
-                        <a href="{{route('admin.language_line.show', $model->id)}}" class="btn btn-info mb-1"><i
+                        <a href="{{route('admin.langs.show', $model->id)}}" class="btn btn-info mb-1"><i
                                 class="icon fas fa-info mr-2"></i> Info</a>
-                        <a href="{{route('admin.language_line.edit',$model->id)}}" class="btn btn-warning mb-1"><i
+                        <a href="{{route('admin.langs.edit',$model->id)}}" class="btn btn-warning mb-1"><i
                                 class="icon fas fa-edit mr-2"></i>
                             Edit</a>
                         <form onsubmit="return confirm('Are you sure?')" method="post"
-                            action="{{route('admin.language_line.destroy', $model->id)}}" class="d-inline-block">
+                            action="{{route('admin.langs.destroy', $model->id)}}" class="d-inline-block">
                             @method('delete')
                             @csrf
                             <button type="submit" style="width: fit-content;" class="btn btn-outline-danger mb-1">

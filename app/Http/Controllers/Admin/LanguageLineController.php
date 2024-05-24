@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\LanguageLineRequest;
 use App\Models\Lang;
-use Illuminate\Http\Request;
 use Spatie\TranslationLoader\LanguageLine;
 
 class LanguageLineController extends Controller
@@ -12,9 +12,9 @@ class LanguageLineController extends Controller
     public function index()
     {
         $langs = Lang::all();
-        $data = LanguageLine::where('is_deleted', 0)->get();
+        $models = LanguageLine::where('is_deleted', 0)->get();
         if (!empty($langs)) {
-            return view('admin.language_line.index', compact('data', 'langs'));
+            return view('admin.language_line.index', compact('models', 'langs'));
         } else {
             abort(404);
         }
@@ -26,9 +26,9 @@ class LanguageLineController extends Controller
         return view('admin.language_line.create', compact('langs'));
     }
 
-    public function store(Request $request)
+    public function store(LanguageLineRequest $request)
     {
-        $data = $request->all();
+        $data = $request->only('text', 'group', 'key');
         // $data['is_deleted'] = $request->is_deleted ? 1 : 0;
         $created = LanguageLine::create($data);
 
@@ -43,41 +43,55 @@ class LanguageLineController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(LanguageLine $languageLine)
     {
         if (!empty($languageLine)) {
-            $data = $languageLine;
-            return view('admin.language_line.show', compact('data'));
+            $model = $languageLine;
+            return view('admin.language_line.show', compact('model'));
         } else {
             abort(404);
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(LanguageLine $languageLine)
     {
-        //
+        if (!empty($languageLine)) {
+            $model = $languageLine;
+            $langs = Lang::all();
+            return view('admin.language_line.edit', compact('model', 'langs'));
+        } else {
+            abort(404);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, LanguageLine $languageLine)
+    public function update(LanguageLineRequest $request, LanguageLine $languageLine)
     {
-        //
+        if (!empty($languageLine)) {
+            $model = $languageLine;
+            $langs = Lang::all();
+
+            $data = $request->only('text', 'group', 'key');
+            // $data['is_deleted'] = $request->is_deleted ? 1 : 0;
+            $update = $languageLine->update($data);
+
+            if ($update) {
+                return redirect()->route('admin.language_line.index')
+                    ->with('type', 'success')
+                    ->with('message', 'Language Line has been updated.');
+            } else {
+                return back()
+                    ->with('type', 'danger')
+                    ->with('message', 'Failed to update language line!')
+                    ->withInput($data)->with(compact('model', 'lang'));
+            }
+        } else {
+            abort(404);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(LanguageLine $languageLine)
     {
-        if ($languageLine) {
+        if (!empty($languageLine)) {
             $deleted = $languageLine->delete();
 
             if ($deleted) {

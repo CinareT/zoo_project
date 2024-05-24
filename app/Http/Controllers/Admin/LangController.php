@@ -3,64 +3,121 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\LangRequest;
 use App\Models\Lang;
-use Illuminate\Http\Request;
 
 class LangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $models = Lang::all();
+        return view('admin.langs.index', compact('models'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('admin.langs.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(LangRequest $request)
     {
-        //
+        $data = $request->only('country', 'code', 'image');
+
+        $created = Lang::create($data);
+
+        if ($created) {
+            if ($request->file()) {
+                $fileExtension = $request->image->extension();
+                $imgName = 'langs_' . $created->code . '_' . time() . sprintf("%03s", rand(0, 999)) . '.' . $fileExtension;
+                $imgPath = $request->file('image')->storeAs('uploads/admin/langs', $imgName, 'public');
+                $created->image = '/storage/' . $imgPath;
+                $created->save();
+            }
+
+            return redirect()->route('admin.langs.index')
+                ->with('type', 'success')
+                ->with('message', 'Language has been stored.');
+        } else {
+            return back()
+                ->with('type', 'danger')
+                ->with('message', 'Failed to store language!');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Lang $lang)
     {
-        //
+        if (!empty($lang)) {
+            $model = $lang;
+            return view('admin.langs.show', compact('model'));
+        } else {
+            abort(404);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Lang $lang)
     {
-        //
+        if (!empty($lang)) {
+            $model = $lang;
+            return view('admin.langs.edit', compact('model'));
+        } else {
+            abort(404);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Lang $lang)
+    public function update(LangRequest $request, Lang $lang)
     {
-        //
+        if (!empty($lang)) {
+            $model = $lang;
+
+            $data = $request->only('country', 'code', 'image');
+            $image = $model->image;
+            $update = $lang->update($data);
+            if ($update) {
+                if ($request->file()) {
+                    if ($image && file_exists(public_path($image))) {
+                        unlink(public_path($image));
+                    }
+                    $fileExtension = $request->image->extension();
+                    $imgName = 'langs_' . $model->code . '_' . time() . sprintf("%03s", rand(0, 999)) . '.' . $fileExtension;
+                    $imgPath = $request->file('image')->storeAs('uploads/admin/langs', $imgName, 'public');
+                    $model->image = '/storage/' . $imgPath;
+                    $model->save();
+                }
+                return redirect()->route('admin.langs.index')
+                    ->with('type', 'success')
+                    ->with('message', 'Language has been updated.');
+            } else {
+                return back()
+                    ->with('type', 'danger')
+                    ->with('message', 'Failed to update language!')
+                    ->withInput($data)->with(compact('model'));
+            }
+        } else {
+            abort(404);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Lang $lang)
     {
-        //
+        $model = $lang;
+        if (!empty($model)) {
+
+            if ($model->image && file_exists(public_path($model->image))) {
+                unlink(public_path($model->image));
+            }
+            $deleted = $model->delete();
+
+            if ($deleted) {
+                return redirect()->route('admin.langs.index')
+                    ->with('type', 'info')
+                    ->with('message', 'Language has been deleted!');
+            } else {
+                return redirect()->back()
+                    ->with('type', 'danger')
+                    ->with('message', 'Failed to delete language!');
+            }
+        } else {
+            abort(404);
+        }
     }
 }
