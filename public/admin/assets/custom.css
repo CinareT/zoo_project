@@ -7,3 +7,7 @@
     border: none;
     background-color: transparent;
 }
+
+.w-fit-content {
+    width: fit-content !important;
+}

@@ -9,48 +9,57 @@ use Spatie\TranslationLoader\LanguageLine;
 
 class LanguageLineController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
+        $langs = Lang::all();
         $data = LanguageLine::where('is_deleted', 0)->get();
-        if( !empty($data)){
-            return view('admin.language_line.index', compact('data'));
-        }else{
+        if (!empty($langs)) {
+            return view('admin.language_line.index', compact('data', 'langs'));
+        } else {
             abort(404);
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $langs = Lang::all();
         return view('admin.language_line.create', compact('langs'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        // $data['is_deleted'] = $request->is_deleted ? 1 : 0;
+        $created = LanguageLine::create($data);
+
+        if ($created) {
+            return redirect()->route('admin.language_line.index')
+                ->with('type', 'success')
+                ->with('message', 'Language Line has been stored.');
+        } else {
+            return back()
+                ->with('type', 'danger')
+                ->with('message', 'Failed to store language line!');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(LanguageLine $languageLine)
     {
-        //
+        if (!empty($languageLine)) {
+            $data = $languageLine;
+            return view('admin.language_line.show', compact('data'));
+        } else {
+            abort(404);
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(LanguageLine $languageLine)
     {
         //
     }
@@ -58,7 +67,7 @@ class LanguageLineController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, LanguageLine $languageLine)
     {
         //
     }
@@ -66,8 +75,22 @@ class LanguageLineController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(LanguageLine $languageLine)
     {
-        //
+        if ($languageLine) {
+            $deleted = $languageLine->delete();
+
+            if ($deleted) {
+                return redirect()->route('admin.language_line.index')
+                    ->with('type', 'info')
+                    ->with('message', 'Language line has been deleted!');
+            } else {
+                return redirect()->back()
+                    ->with('type', 'danger')
+                    ->with('message', 'Failed to delete language line!');
+            }
+        } else {
+            abort(404);
+        }
     }
 }

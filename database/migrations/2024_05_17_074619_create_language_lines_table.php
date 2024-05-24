@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('group')->index();
             $table->string('key');
             $table->json('text');
-            $table->boolean('is_deleted')->deault(false);
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
     }

@@ -1,105 +1,97 @@
 @extends('admin.layouts.master')
 
+@push('css')
+<!-- DataTables -->
+<link rel="stylesheet" href="{{asset('admin/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('admin/assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{asset('admin/assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+@endpush
+
+@push('js')
+<!-- DataTables  & Plugins -->
+<script src="{{asset('admin/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/jszip/jszip.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{asset('admin/assets/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<script>
+$(function() {
+    $("#example1").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+});
+</script>
+@endpush
+
 @section('content')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>
-                        Language Line Index
-                    </h1>
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </section>
-    <div class="content">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="card card-primary card-outline card-outline-tabs">
-                    <div class="card-header p-0 border-bottom-0">
-                        <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill"
-                                    href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home"
-                                    aria-selected="true">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill"
-                                    href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile"
-                                    aria-selected="false">Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill"
-                                    href="#custom-tabs-four-messages" role="tab"
-                                    aria-controls="custom-tabs-four-messages" aria-selected="false">Messages</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill"
-                                    href="#custom-tabs-four-settings" role="tab"
-                                    aria-controls="custom-tabs-four-settings" aria-selected="false">Settings</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <div class="tab-content" id="custom-tabs-four-tabContent">
-                            <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel"
-                                aria-labelledby="custom-tabs-four-home-tab">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada lacus ullamcorper
-                                dui
-                                molestie, sit amet congue quam finibus. Etiam ultricies nunc non magna feugiat commodo.
-                                Etiam
-                                odio magna, mollis auctor felis vitae, ullamcorper ornare ligula. Proin pellentesque
-                                tincidunt
-                                nisi, vitae ullamcorper felis aliquam id. Pellentesque habitant morbi tristique senectus et
-                                netus et malesuada fames ac turpis egestas. Proin id orci eu lectus blandit suscipit.
-                                Phasellus
-                                porta, ante et varius ornare, sem enim sollicitudin eros, at commodo leo est vitae lacus.
-                                Etiam
-                                ut porta sem. Proin porttitor porta nisl, id tempor risus rhoncus quis. In in quam a nibh
-                                cursus
-                                pulvinar non consequat neque. Mauris lacus elit, condimentum ac condimentum at, semper vitae
-                                lectus. Cras lacinia erat eget sapien porta consectetur.
-                            </div>
-                            <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel"
-                                aria-labelledby="custom-tabs-four-profile-tab">
-                                Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut
-                                ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur
-                                adipiscing
-                                elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-                                Curae;
-                                Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus
-                                ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc
-                                euismod pellentesque diam.
-                            </div>
-                            <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel"
-                                aria-labelledby="custom-tabs-four-messages-tab">
-                                Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat
-                                augue
-                                id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem,
-                                ac
-                                tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit
-                                condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus
-                                tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet
-                                sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum
-                                gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt
-                                eleifend
-                                ac ornare magna.
-                            </div>
-                            <div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel"
-                                aria-labelledby="custom-tabs-four-settings-tab">
-                                Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus
-                                turpis
-                                ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate.
-                                Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec
-                                interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at
-                                consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst.
-                                Praesent imperdiet accumsan ex sit amet facilisis.
-                            </div>
+
+<div class="text-right mb-3">
+    <a href="http://127.0.0.1:8001/control/language_line/create" class="btn btn-success">New Language Line</a>
+</div>
+<div class="card">
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 10px">Id</th>
+                    <th>Group</th>
+                    <th>Key</th>
+                    <th>Text</th>
+                    <th class="w-auto">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($data as $model)
+                <tr>
+                    <td>{{$model->id}}</td>
+                    <td>{{$model->group}}</td>
+                    <td>{{$model->key}}</td>
+                    <td>
+                        <div class="texts">
+                            @foreach ($model->text as $lang => $text)
+                            <p><strong>{{$lang}}: </strong>{{Str::limit($text,50)}}</p>
+                            @endforeach
                         </div>
-                    </div>
-                    <!-- /.card -->
-                </div>
-            </div>
-        </div>
+                    </td>
+                    <td class="text-right">
+                        <a href="{{route('admin.language_line.show', $model->id)}}" class="btn btn-info mb-1"><i
+                                class="icon fas fa-info mr-2"></i> Info</a>
+                        <a href="{{route('admin.language_line.edit',$model->id)}}" class="btn btn-warning mb-1"><i
+                                class="icon fas fa-edit mr-2"></i>
+                            Edit</a>
+                        <form onsubmit="return confirm('Are you sure?')" method="post"
+                            action="{{route('admin.language_line.destroy', $model->id)}}" class="d-inline-block">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" style="width: fit-content;" class="btn btn-outline-danger mb-1">
+                                <i class="icon fas fa-trash mr-2"></i> Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th style="width: 10px">Id</th>
+                    <th>Group</th>
+                    <th>Key</th>
+                    <th>Text</th>
+                    <th class="w-auto">Actions</th>
+                </tr>
+            </tfoot>
+        </table>
     </div>
+    <!-- /.card-body -->
+</div>
 @endsection
