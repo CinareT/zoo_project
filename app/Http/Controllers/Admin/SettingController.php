@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Lang;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
@@ -13,15 +14,18 @@ class SettingController extends Controller
      */
     public function index()
     {
-        //
+       $models = Setting::all();
+       return view('admin.settings.index', compact('models'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        $langs = Lang::all();
+        return view('admin.settings.create', compact('langs'));
     }
 
     /**

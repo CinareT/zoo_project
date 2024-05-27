@@ -4,8 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Education extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
+
+    protected $fillable = [
+        'img_url',
+        
+    ];
+
+    protected $translatable = ['img_url'];
 }

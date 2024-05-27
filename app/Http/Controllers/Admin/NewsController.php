@@ -3,64 +3,91 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\NewsRequest;
+use App\Models\Lang;
 use App\Models\News;
-use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+       $models = News::all();
+       return view('admin.news.index', compact('models'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $langs = Lang::all();
+        return view('admin.news.create', compact('langs'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
-        //
+        $data = $request->only('title', 'date', 'description', 'img_big_url', 'fb_link', 'tw_link', 'email', 'img_url');
+        dd($data);
+        // Veritabanına kaydetmek
+        $created = News::create($data);
+
+        if ($created) {
+            return redirect()->route('admin.news.index')
+                ->with('type', 'success')
+                ->with('message', 'News has been stored.');
+        } else {
+            return back()
+                ->with('type', 'danger')
+                ->with('message', 'Failed to store news!');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(News $news)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(News $news)
     {
-        //
+        if (!empty($news)) {
+            $langs = Lang::all();
+            return view('admin.news.edit', compact('news', 'langs'));
+        } else {
+            abort(404);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, News $news)
+    public function update(NewsRequest $request, News $news)
     {
-        //
+        if (!empty($news)) {
+            $data = $request->only('title', 'date', 'description', 'img_big_url', 'fb_link', 'tw_link', 'email', 'img_url');
+            
+            $update = $news->update($data);
+
+            if ($update) {
+                return redirect()->route('admin.news.index')
+                    ->with('type', 'success')
+                    ->with('message', 'News has been updated.');
+            } else {
+                return back()
+                    ->with('type', 'danger')
+                    ->with('message', 'Failed to update news!')
+                    ->withInput($data);
+            }
+        } else {
+            abort(404);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(News $news)
     {
-        //
+        if (!empty($news)) {
+            $deleted = $news->delete();
+
+            if ($deleted) {
+                return redirect()->route('admin.news.index')
+                    ->with('type', 'info')
+                    ->with('message', 'News has been deleted!');
+            } else {
+                return redirect()->back()
+                    ->with('type', 'danger')
+                    ->with('message', 'Failed to delete News!');
+            }
+        } else {
+            abort(404);
+        }
     }
 }

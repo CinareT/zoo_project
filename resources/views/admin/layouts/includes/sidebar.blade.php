@@ -46,8 +46,8 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item @if (Route::is('*.language_line.*', '*.langs.*', '*.categories.*')) menu-is-opening menu-open @endif">
-                            <a href="#" class="nav-link @if (Route::is('*.language_line.*', '*.langs.*', '*.categories.*')) active @endif">
+                        <li class="nav-item @if (Route::is('*.language_line.*', '*.langs.*', '*.categories.*', '*.countries.*', '*.news.*', '*.settings.*')) menu-is-opening menu-open @endif">
+                            <a href="#" class="nav-link @if (Route::is('*.language_line.*', '*.langs.*', '*.categories.*', '*.countries.*', '*.news.*', '*.settings.*')) active @endif">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     Tables
@@ -74,6 +74,27 @@
                                         class="nav-link @if (Route::is('admin.categories.*')) active @endif">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Category</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.countries.index') }}"
+                                        class="nav-link @if (Route::is('admin.countries.*')) active @endif">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Country</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.news.index') }}"
+                                        class="nav-link @if (Route::is('admin.news.*')) active @endif">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>News</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.settings.index') }}"
+                                        class="nav-link @if (Route::is('admin.settings.*')) active @endif">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Setting</p>
                                     </a>
                                 </li>
                             </ul>

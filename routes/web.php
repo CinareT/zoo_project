@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LangController;
 use App\Http\Controllers\Admin\LanguageLineController;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Client\HomeController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -17,6 +20,11 @@ Route::group(['middleware' => 'auth', 'prefix' => LaravelLocalization::setLocale
     Route::resource('language_line', LanguageLineController::class);
     Route::resource('langs', LangController::class);
     Route::resource('categories', CategoryController::class);
+    Route::resource('countries', CountryController::class);
+    Route::resource('news', NewsController::class);
+    Route::resource('settings', SettingController::class);
+
+
 });
 
 
